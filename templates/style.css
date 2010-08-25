@@ -1,0 +1,72 @@
+body{
+	min-width: 100px;
+}
+
+	.errHilite {
+		color: #ff0000;
+	}
+
+	input.errHilite {
+		background-color: #cccccc;
+		color: black;
+	}
+.tx-publics-pi2 h2 {
+	padding: 5px 15px 0 15px;
+	font-size: 10px;
+	margin: 0;
+	color: #606060;
+	font-weight:bold;
+}
+.tx-publics-pi2 .close-button {
+	text-align:right;
+}
+.tx-publics-pi2 .close-button a {
+	font-weight:bold;
+}
+.tx-publics-pi2 p {
+	padding: 2px 15px;
+}
+input {
+	border: 1px solid #454644;
+	font-size:10px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+table {
+	width: 100%;
+}
+td {
+	padding: 0 15px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.external-author-form {
+	width: 200px;
+	height: 150px;
+	z-index: 1000;
+	background-color: #EFEFEF;
+	position: absolute;
+	padding: 8px;
+	border: 1px solid #000000;
+}
+
+div.tx-x4epublication-publselect{
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+#publicationSearchForm h1{
+	font-size: 14px;
+}
+
+#publicationSearchForm div h2{
+	font-size: 12px;
+	padding-left: 15px;
+}
+
+#publicationSearchForm div table{
+	font-size: 10px;
+}
+
+#publicationSearchForm div table tr td.pubSearchCont{
+	min-width: 300px;
+}

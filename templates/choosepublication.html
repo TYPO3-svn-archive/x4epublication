@@ -1,0 +1,77 @@
+<!-- ###view### -->
+
+###publAdminArea###
+
+<form action="###formAction###" method="post">
+<p><input name="###prefixId###[displayselected]" id="automatisch" type="radio" class="radio" value="0" ###displaySelected0### onchange="enableSave();" /> <label for="automatisch">Automatisch die drei neusten Publikationen anzeigen</label></p>
+<p><input name="###prefixId###[displayselected]" id="hand" type="radio" class="radio" value="1" ###displaySelected1### onchange="enableSave();" /> <label for="hand">Publikationen von Hand ausw&auml;hlen:</label></p>
+<div style="margin-left: 24px;">
+<!-- ###list### -->
+<div id="publisherTemplate" style="visibility:hidden; height:0; display:none;">
+			<div class="buttons">
+				<span class="delete">
+					<a href="javascript:removePublicationFromSelection(###uid###);" title="L&ouml;schen"><img src="typo3conf/ext/x4epublication/images/delete.gif" height="9" width="9" alt="L&ouml;schen" title="L&ouml;schen"></a>
+				</span>
+				<span class="moveup">
+					<a href="javascript:moveUp(###uid###)" title="Nach oben"><img src="typo3conf/ext/x4epublication/images/up.gif" height="9" width="9" alt="Nach oben" title="Nach oben"></a>
+				</span>			
+				<span class="movedown">
+					<a href="javascript:moveDown(###uid###)" title="Nach unten"><img src="typo3conf/ext/x4epublication/images/down.gif" height="9" width="9" alt="Nach unten" title="Nach unten"></a>
+				</span>
+			</div>
+			<div class="content">
+				###content###
+			</div>
+</div>
+<div id="publicationList">
+	<!-- ###rows### begin -->
+		<div id="publ_###uid###">
+			<div class="buttons">
+				<span class="delete">
+					<a href="javascript:removePublicationFromSelection(###uid###);" title="L&ouml;schen"><img src="typo3conf/ext/x4epublication/images/delete.gif" height="9" width="9" alt="L&ouml;schen" title="L&ouml;schen"></a>
+				</span>
+				<span class="moveup">
+					<a href="javascript:moveUp(###uid###)" title="Nach oben"><img src="typo3conf/ext/x4epublication/images/up.gif" height="9" width="9" alt="Nach oben" title="Nach oben"></a>
+				</span>			
+				<span class="movedown">
+					<a href="javascript:moveDown(###uid###)" title="Nach unten"><img src="typo3conf/ext/x4epublication/images/down.gif" height="9" width="9" alt="Nach unten" title="Nach unten"></a>
+				</span>
+			</div>
+			<div class="content">
+				###content###
+			</div>
+		</div>
+	<!-- ###rows### end -->
+</div>
+<!-- ###list### -->
+<p><a href="javascript:showIframe('publicationSearch','530px','340px');"><img src="typo3conf/ext/x4epublication/images/new.gif" height="9" width="9"> Publikation hinzuf&uuml;gen</a></p>
+</div>
+<iframe id="publicationSearch" style="height:0px;width:0px;position:absolute;background-color:#ffffff;z-index:250; left:30px;" src="###searchPublicationFrameSrc###"></iframe>
+<p style="margin-top: 20px;">
+<input type="hidden" name="###prefixId###[selectedPublications]" id="selectedPublications" value="###selectedPublications###" />
+<input type="submit" name="###prefixId###[submit]" id="saveButton" value="###saveLabel###" disabled="disabled" />
+</p>
+</form>
+
+<!-- ###view### -->
+
+<!-- same liste as publisher search for publications, do not choose more than three-->
+
+
+<!-- ###noResults### -->
+<p>###content###</p>
+<!-- ###noResults### -->
+
+
+<!-- ###select### begin-->
+<form id="personSelectorForm" action="###choosePerson###" method="post">
+	<label for="personSelector">Aktuelle Person: </label>
+	<select id="personSelector" name="###prefixId###[person_id]" onchange="this.form.submit()">
+		###persons###	
+	</select>
+</form>
+<!-- ###select### end-->
+
+<!-- ###options### begin -->
+	<option value="###value###" ###selected###>###label###</option>
+<!-- ###options### end -->

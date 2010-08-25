@@ -1,0 +1,439 @@
+<!-- ###subCatSelection### begin -->
+	<h1>###heading###</h1>
+	<table class="tablelist" width="100%">
+		<tbody>
+			<!-- ###catSelectorBlock### -->
+			<tr>
+				<td>
+					<p><strong>###subCatSelection.heading###:</strong></p>
+				</td>
+				<td>
+					<form id="categorySubForm" action="###formAction###" method="post" enctype="multipart/form-data">
+  					<p>
+  						<select name="tx_x4epublication_pi2[category_sub]" onchange="document.forms['categorySubForm'].submit();">
+	  						<option selected="selected">###subCatSelection.firstSelection###</option>
+	  						<!-- ###subcatOptions### begin -->
+	  							<option value="###value###" ###selected###>###label###</option>
+	  						<!-- ###subcatOptions### end -->
+  						</select>
+  						<input type="hidden" name="tx_x4epublication_pi2[changePublType]" value="1">
+  					</p>
+  					</form>
+  				</td>
+  			</tr>
+  			<!-- ###catSelectorBlock### -->
+  		</tbody>
+  	</table>
+<!-- ###subCatSelection### end -->
+
+<!-- ###newForm### begin -->
+	<h1>###heading###</h1>
+	<table class="tablelist" width="100%">
+		<tbody>
+			###catSelectorBlock###
+			<form action="###formAction###" method="post" enctype="multipart/form-data" onsubmit="return validateForm(this,0,0,0,0,5);">
+				<input type="hidden" name="tx_x4epublication_pi2[category_sub]" value="###category_sub###" />
+			###fields###
+			<tr>
+				<td>*obligatorisch</td>
+	    		<td><input value="###newForm.submit###" type="submit" /> <input value="###newForm.back###" type="button" onclick="window.location.href='###backUrl###';" /></a></td>
+	  		</tr></form>
+		</tbody>
+	</table>
+</form>
+<!-- ###newForm### end -->
+
+<!-- ###editForm### begin -->
+	<h1>###heading###</h1>
+	<table class="tablelist" width="100%">
+		<tbody>
+			###catSelectorBlock###
+			<form action="###formAction###" method="post" enctype="multipart/form-data" onsubmit="return validateForm(this,0,0,0,0,5);">
+				<input type="hidden" name="tx_x4epublication_pi2[category_sub]" value="###category_sub###" />
+			###fields###
+			<tr>
+				<td>*obligatorisch</td>
+	    		<td><input value="###editForm.submit###" type="submit" /> <input value="###editForm.back###" type="button"></td>
+	  		</tr></form>
+		</tbody>
+	</table>
+</form>
+<!-- ###editForm### end -->
+
+<!-- ###creationSuccessful### begin -->
+	Record has been created
+<!-- ###creationSuccessful### end -->
+
+
+Here comes the different forms elements
+
+<!-- ###auth_publ### begin --> 
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong><br />###example###</p></td>
+    	<td colspan="2">
+    		<input type="radio" name="tx_x4epublication_pi2[auth_publ]" value="0" ###checked0###>Autoren
+    		<input type="radio" name="tx_x4epublication_pi2[auth_publ]" value="1" ###checked1###>Herausgeber
+    	</td>
+	</tr>
+<!-- ###auth_publ### end -->
+
+If you change anything in the div "authorTemplate" please check code.js to match the change
+<!-- ###authors### begin -->
+	<tr>
+	    <td valign="top"><p><strong><label for="tx_x4epublication_pi2[authors]">###label###*</label>:</strong></p><p><img src="fileadmin/histsem/_templates/images/icon_new.gif" height="9" width="9"> <a href="javascript:showPersonSearch('author');">Hinzufügen</a></p></td>
+	    <td valign="top" nowrap>
+	    	<div id="authorContainer">
+	    		<div id="authorTemplate" style="visibility:hidden; height:0;"><p id="author_###UID###"> <a href="javascript:removePerson(###UID###,'author','###FIRSTNAME### ###NAME###')"><img src="fileadmin/histsem/_templates/images/icon_delete.gif" width="9" height="9" /> ###remAuthor###</a> ###NAME### ###FIRSTNAME###</p></div>
+	    		<!-- ###author### --><p id="author_###actualUserUid###"><a href="javascript:removePerson(###actualUserUid###,'author','###actualUserFirstname### ###actualUserName###')"><img src="fileadmin/histsem/_templates/images/icon_delete.gif" width="9" height="9" /> Entfernen</a> ###actualUserName### ###actualUserFirstname### <!-- <input type="checkbox" name="tx_x4epublication_pi2[publishers][]" value="###actualUserUid###" ###publisherChecked###> ###publisherChBoxLabel### --></p><!-- ###author### -->
+	    	</div>
+	        <input id="authorIds" type="hidden" name="tx_x4epublication_pi2[authors]" value="###actualUserUid###" />
+	        <iframe id="authorSearch" style="height:0px;width:0px;position:absolute;background-color:#ffffff;z-index:250;" src="###searchAuthorFrameSrc###"></iframe>
+		</td>
+	</tr>
+	<tr >
+		<td><p><strong>###extAuthor###:</strong></p></td>
+	    <td valign="top">
+	      <table class="tablelist tableinternal" width="100%">
+	          <tbody><tr>
+	            <td><strong>###extAuthor.name###</strong></td>
+	            <td><strong>###extAuthor.firstname###</strong></td>
+	          </tr>
+	          <tr class="odd">
+	            <td><input name="tx_x4epublication_pi2[auth_ext1][]" value="###auth_ext1_name###" type="text" /></td>
+	            <td><input name="tx_x4epublication_pi2[auth_ext1][]" value="###auth_ext1_firstname###" type="text" /></td>
+	          </tr>
+	          <tr>
+	            <td><input name="tx_x4epublication_pi2[auth_ext2][]" value="###auth_ext2_name###" type="text" /></td>
+	            <td><input name="tx_x4epublication_pi2[auth_ext2][]" value="###auth_ext2_firstname###" type="text" /></td>
+	          </tr>
+	          <tr class="odd">
+	            <td><input name="tx_x4epublication_pi2[auth_ext3][]" value="###auth_ext3_name###" type="text" /></td>
+	            <td><input name="tx_x4epublication_pi2[auth_ext3][]" value="###auth_ext3_firstname###" type="text" /></td>
+	          </tr>
+	          <tr>
+	            <td><input name="tx_x4epublication_pi2[auth_ext4][]" value="###auth_ext4_name###" type="text" /></td>
+	            <td><input name="tx_x4epublication_pi2[auth_ext4][]" value="###auth_ext4_firstname###" type="text" /></td>
+	          </tr>
+	        </tbody>
+	       </table>
+		</td>
+	</tr>
+<!-- ###authors### end -->
+
+<!-- ###authors_sortable### begin -->
+	<tr>
+	    <td valign="top">
+	    	<a name="author"></a>
+	    	<div class="external-author-form" id="externalAuthor" style="display:none;">
+	    		<p>
+	    			<label for="extAutName">Name / Institut</label><br /><input type="text" id="extAutName" size="30" />
+	    		</p>
+	    		<p>
+	    			<label for="extAutFirstname">Vorname</label><br /><input type="text" id="extAutFirstname" size="30" />
+	    		</p>
+	    		<p><a href="#" onclick="addExternalPerson('author');Element.hide('externalAuthor')"><img src="fileadmin/histsem/_templates/images/icon_new.gif" height="9" width="9"> Hinzuf&uuml;gen</a><br /></p>
+	    		<p><a href="#" onclick="Element.hide('externalAuthor')">Schliessen</a></p>
+	    	</div>
+	    	<p><strong><label for="###prefixId###[authors]">###label###*:</label></strong><br /></p>
+	    	<p>
+	    		<a href="javascript:showPersonSearch('author');">
+	    			<img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" />
+	    			###addInternalAuthor###
+	    		</a>
+	    	</p>
+	    	<p>
+	    		<a href="#author" onclick="Element.show('externalAuthor');">
+	    			<img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" />
+	    			###addExternalAuthor###
+	    		</a>
+	    	</p>
+	    	<p><i>Sie können die Reihenfolge ändern, indem Sie auf die Namen klicken und sie an die gewünschte Stelle schieben.</i></p>
+	    </td>
+	    <td valign="top" nowrap="nowrap">
+	    	<ul style="display:none" id="authorTemplate">
+	    		<li id="author_###actualUserUid###">
+	    			<a href="javascript:removePerson('###actualUserUid###','author','###actualUserFirstname### ###actualUserName###')"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Autor entfernen" title="Autor entfernen" /></a>
+	    			<a href="javascript:void();" onclick="movePersonUp('author','###actualUserUid###');"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Autor nach oben schieben" title="Autor nach oben schieben" /></a>
+					<a href="javascript:void();" onclick="movePersonDown('author','###actualUserUid###');"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Autor nach unten schieben" title="Autor nach unten schieben" /></a>	    			
+	    			###actualUserName### ###actualUserFirstname###
+	    		</li>
+	    	</ul>
+	    	<ul id="authorContainer">
+	    		<!-- ###author### -->
+	    		<li id="author_###actualUserUid###">
+	    			<a href="javascript:removePerson('###actualUserUid###','author','###actualUserFirstname### ###actualUserName###')"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Autor entfernen" title="Autor entfernen" /></a>
+	    			<a href="javascript:void();" onclick="movePersonUp('author','###actualUserUid###');"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Autor nach oben schieben" title="Autor nach oben schieben" /></a>
+					<a href="javascript:void();" onclick="movePersonDown('author','###actualUserUid###');"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Autor nach unten schieben" title="Autor nach unten schieben" /></a>	    			
+	    			###actualUserName### ###actualUserFirstname###
+	    		</li><!-- ###author### -->
+	    	</ul>
+	    	<script type="text/javascript">
+				sortablePersons('author');
+			</script>
+	        <input id="authorIds" type="hidden" name="###prefixId###[authors]" value="###author_sorting###" />
+	        <textarea style="display:none;" name="###prefixId###[authors_ext]" id="authors_ext">###authors_ext###</textarea>
+	        <iframe id="authorSearch" style="height:0px;width:0px;position:absolute;background-color:#ffffff;z-index:250;" src="###searchAuthorFrameSrc###"></iframe>
+		</td>
+	</tr>
+	<tr>
+        <td><p><label for="###prefixId###[furtherAuthors]">et al.</label></p></td>
+        <td><input name="###prefixId###[furtherAuthors]" value="1" type="checkbox" ###furtherAuthorsChecked### /></td>
+	</tr>	
+<!-- ###authors_sortable### end -->
+
+<!-- ###publishers_sortable### begin -->
+	<tr>
+	    <td valign="top">
+	    <a name="publisher"></a>
+	    	<div class="external-author-form" id="externalPublisher" style="display:none;">
+	    		<p><b>Externe Person hinzufügen</b></p>
+	    		<p>
+	    			<label for="extPublName">Name / Institut</label><br /><input type="text" id="extPublName" size="30" />
+	    		</p>
+	    		<p>
+	    			<label for="extPublFirstname">Vorname</label><br /><input type="text" id="extPublFirstname" size="30" />
+	    		</p>
+	    		<p><a href="#publisher" onclick="addExternalPerson('publisher');Element.hide('externalPublisher')"><img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" /> Hinzuf&uuml;gen</a><br /></p>
+	    		<p><a href="#publisher" onclick="Element.hide('externalPublisher')">Schliessen</a></p>
+	    	</div>
+	    	<p><strong><label for="tx_x4epublication_pi2[publishers]">Herausgeber*:</label></strong><br /></p>
+	    	<p>
+	    		<a href="#publisher" onclick="showPersonSearch('publisher');">
+	    			<img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" />
+	    			Internen Herausgeber hinzufügen
+	    		</a>
+	    	</p>
+	    	<p>
+	    		<a href="#publisher" onclick="Element.show('externalPublisher');">
+	    			<img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" />
+	    			Externen Herausgeber hinzufügen
+	    		</a>
+	    	</p>
+	    	<p><i>Sie können die Reihenfolge ändern, indem Sie auf die Namen klicken und sie an die gewünschte Stelle schieben.</i></p>
+	    </td>
+	    <td valign="top" nowrap="nowrap">
+	    	<ul style="display:none" id="publisherTemplate">
+	    		<li id="publisher_###actualUserUid###">
+	    			<a href="#publisher" onclick="removePerson('###actualUserUid###','publisher','###actualUserFirstname### ###actualUserName###')"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Herausgeber entfernen" title="Herausgeber entfernen" /></a>
+	    			<a href="#publisher" onclick="movePersonUp('publisher','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Herausgeber nach oben schieben" title="Herausgeber nach oben schieben" /></a>
+					<a href="#publisher" onclick="movePersonDown('publisher','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Herausgeber nach unten schieben" title="Herausgeber nach unten schieben" /></a>
+					###actualUserName### ###actualUserFirstname###
+	    		</li>
+	    	</ul>
+	    	<ul id="publisherContainer">
+	    		<!-- ###publisher### -->
+	    		<li id="publisher_###actualUserUid###">
+	    			<a href="#publisher" onclick="removePerson('###actualUserUid###','publisher','###actualUserFirstname### ###actualUserName###')"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Herausgeber entfernen" title="Herausgeber entfernen" /></a>
+	    			<a href="#publisher" onclick="movePersonUp('publisher','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Herausgeber nach oben schieben" title="Herausgeber nach oben schieben" /></a>
+					<a href="#publisher" onclick="movePersonDown('publisher','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Herausgeber nach unten schieben" title="Herausgeber nach unten schieben" /></a>
+					###actualUserName### ###actualUserFirstname###
+	    		</li><!-- ###publisher### -->
+	    	</ul>
+	    	<script type="text/javascript">
+				sortablePersons('publisher');
+			</script>
+	        <input id="publisherIds" type="hidden" name="tx_x4epublication_pi2[publishers]" value="###publisher_sorting###" />
+	        <textarea style="display:none;" name="tx_x4epublication_pi2[publishers_ext]" id="publishers_ext">###publishers_ext###</textarea>
+	        <iframe id="publisherSearch" style="height:0px;width:0px;position:absolute;background-color:#ffffff;z-index:250;" src="###searchPublisherFrameSrc###"></iframe>
+		</td>
+	</tr>
+	<tr>
+        <td><p><label for="tx_x4epublication_pi2[furtherPublishers]">et al.</label></p></td>
+        <td><input name="tx_x4epublication_pi2[furtherPublishers]" value="1" type="checkbox" ###furtherPublishersChecked### /></td>
+	</tr>	
+<!-- ###publishers_sortable### end -->
+
+<!-- ###publishers### begin -->
+	<tr>
+	    <td valign="top"><p><strong><label for="tx_x4epublication_pi2[publishers]">###label###*</label>:</strong></p><p><img src="fileadmin/histsem/_templates/images/icon_new.gif" height="9" width="9"> <a href="javascript:showPersonSearch('publisher');">Hinzufügen</a></p></td>
+	    <td valign="top" nowrap>
+	    	<div id="publisherContainer">
+	    		<div id="publisherTemplate" style="visibility:hidden; height:0;"><p id="publisher_###UID###"> <a href="javascript:removePerson(###UID###,'publisher','###FIRSTNAME### ###NAME###')"><img src="fileadmin/histsem/_templates/images/icon_delete.gif" width="9" height="9" /> ###remPublisher###</a> ###NAME### ###FIRSTNAME###</p></div>
+	    		<!-- ###publisher### --><p id="publisher_###actualPublisherUid###"> <a href="javascript:removePerson(###actualPublisherUid###,'publisher','###actualPublisherFirstname### ###actualPublisherName###')"><img src="fileadmin/histsem/_templates/images/icon_delete.gif" width="9" height="9" /> ###remPublisher###</a> ###actualPublisherName### ###actualPublisherFirstname###</p><!-- ###publisher### -->
+	    	</div>
+	        <input id="publisherIds" type="hidden" name="tx_x4epublication_pi2[publishers]" value="###actualPublisherUid###" />
+	        <iframe id="publisherSearch" style="height:0px;width:0px;position:absolute;background-color:#ffffff;z-index:250;" src="###searchPublisherFrameSrc###"></iframe>
+		</td>
+	</tr>
+	<tr >
+		<td><p><strong>###extPublisher###:</strong></p></td>
+	    <td valign="top">
+	      <table class="tablelist tableinternal" width="100%">
+	          <tbody><tr>
+	            <td><strong>###extPublisher.name###</strong></td>
+	            <td><strong>###extPublisher.firstname###</strong></td>
+	          </tr>
+	          <tr class="odd">
+	            <td><input name="tx_x4epublication_pi2[publ_ext1][]" value="###publ_ext1_name###" type="text" /></td>
+	            <td><input name="tx_x4epublication_pi2[publ_ext1][]" value="###publ_ext1_firstname###" type="text" /></td>
+	          </tr>
+	          <tr>
+	            <td><input name="tx_x4epublication_pi2[publ_ext2][]" value="###publ_ext2_name###" type="text" /></td>
+	            <td><input name="tx_x4epublication_pi2[publ_ext2][]" value="###publ_ext2_firstname###" type="text" /></td>
+	          </tr>
+	          <tr class="odd">
+	            <td><input name="tx_x4epublication_pi2[publ_ext3][]" value="###publ_ext3_name###" type="text" /></td>
+	            <td><input name="tx_x4epublication_pi2[publ_ext3][]" value="###publ_ext3_firstname###" type="text" /></td>
+	          </tr>
+	          <tr class="odd">
+	            <td><input name="tx_x4epublication_pi2[publ_ext4][]" value="###publ_ext4_name###" type="text" /></td>
+	            <td><input name="tx_x4epublication_pi2[publ_ext4][]" value="###publ_ext4_firstname###" type="text" /></td>
+	          </tr>
+	        </tbody>
+	       </table>
+		</td>
+	</tr>
+<!-- ###publishers### end -->
+
+<!-- ###pub_language### -->
+			<tr>
+				<td>
+					<p><strong>###pubLangSelection.heading###:</strong></p>
+				</td>
+				<td>
+  					<p>
+  						<select name="tx_x4epublication_pi2[pub_language]">
+	  						
+	  						<!-- ###pubLangOptions### begin -->
+	  							<option value="###value###" ###selected###>###label###</option>
+	  						<!-- ###pubLangOptions### end -->
+  						</select>
+  					</p>
+  					
+  				</td>
+  			</tr>
+ <!-- ###pub_language### -->
+			
+<!-- ###title### begin -->
+	<tr>
+    	<td valign="top"><p><strong><label for="tx_x4epublication_pi2[title]">###label###*:</label></strong><br />###example###</p></td>
+    	<td colspan="2"><textarea rows="2" cols="35" name="tx_x4epublication_pi2[title]" alt="blank">###value###</textarea></td>
+	</tr>
+<!-- ###title### end -->
+
+<!-- ###location### begin -->
+	<tr>
+    	<td valign="top"><p><strong><label for="tx_x4epublication_pi2[location]">###label###*:</label></strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[location]" value="###value###" type="text" alt="blank" /></td>
+	</tr>
+<!-- ###location### end -->
+
+
+run = Auflage
+<!-- ###run### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" value="###value###" name="tx_x4epublication_pi2[run]" type="text" /></td>
+	</tr>
+<!-- ###run### end -->
+
+<!-- ###year### begin -->
+	<tr>
+    	<td valign="top"><p><strong><label for="tx_x4epublication_pi2[year]">###label###*</label>:</strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[year]" value="###value###" type="text" alt="blank" /></td>
+	</tr>
+<!-- ###year### end -->
+
+<!-- ###volume### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[volume]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###volume### end -->
+
+
+<!-- ###magazine_title### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[magazine_title]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###magazine_title### end -->
+
+<!-- ###magazine_year### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[magazine_year]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###magazine_year### end -->
+
+<!-- ###magazine_issue### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[magazine_issue]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###magazine_issue### end -->
+
+
+<!-- ###anthology_title### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###*:</strong></p></td>
+    	<td colspan="2"><textarea rows="2" cols="35" name="tx_x4epublication_pi2[anthology_title]" alt="blank">###value###</textarea></td>
+	</tr>
+<!-- ###anthology_title### end -->
+
+
+<!-- ###anthology_publisher### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong></p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[anthology_publisher]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###anthology_publisher### end -->
+
+<!-- ###pages### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[pages]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###pages### end -->
+
+<!-- ###other_redaction### begin -->
+	<tr>
+    	<td valign="top"><p><strong>###label###:</strong></p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[other_redaction]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###other_redaction### end -->
+
+<!-- ###url### begin -->
+	<tr>
+    	<td><p><strong><label for="tx_x4epublication_pi2[url]">###label###:</label></strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[url]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###url### end -->
+
+
+<!-- ###daymonth### begin -->
+	<tr>
+    	<td><p><strong><label for="tx_x4epublication_pi2[daymonth]">###label###:</label></strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[daymonth]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###daymonth### end -->
+
+<!-- ###impact### begin -->
+	<tr>
+    	<td valign="top"><p><strong><label for="tx_x4epublication_pi2[impact]">###label###:</label></strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[impact]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###impact### end -->
+
+<!-- ###publ_company### begin -->
+	<tr>
+    	<td valign="top"><p><strong><label for="tx_x4epublication_pi2[publ_company]">###label###:</label></strong><br />###example###</p></td>
+    	<td colspan="2"><input size="45" name="tx_x4epublication_pi2[publ_company]" value="###value###" type="text" /></td>
+	</tr>
+<!-- ###publ_company### end -->
+
+<!-- ###file_ref### begin -->
+	<tr>
+    	<td><p><strong>###label###:</strong></p></td>
+    	<td colspan="2">
+			###delete_marker### <a href="###oldfile_path###" target="_blank">###oldfile###</a><br /><br />
+			<input size="40" name="tx_x4epublication_pi2[file_ref]" type="file" />
+		</td>
+	</tr>
+<!-- ###file_ref### end -->
+
+<!-- ###file_deletion_marker_part### -->
+<input id="deletefile" type="checkbox" name="tx_x4epublication_pi2[deletefile]" /> Datei l&ouml;schen:
+<!-- ###file_deletion_marker_part### -->
+
+<!-- ###pageTitle### begin --> <!-- ###title_box### -->###title###<!-- ###title_box### --> <!-- ###firstname_box### -->###firstname###<!-- ###firstname_box### --> <!-- ###lastname_box### -->###lastname###<!-- ###lastname_box### --><!-- ###title_after_box### -->, ###title_after###<!-- ###title_after_box### --> - <!-- ###pageTitle### end -->

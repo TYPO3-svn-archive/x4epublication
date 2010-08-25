@@ -1,0 +1,24 @@
+<!-- ###searchForm### begin -->
+<p class="close-button"><a href="javascript:parent.hidePersonSearch('author');">###close###</a></p>
+<form id="authorSearchForm" action="###formAction###" method="post">
+	<h2>###label###</h2>
+	<p><input type="text" name="###prefixId###[authorSearchWord]" value="###searchWord###"> <input type="button" onclick="searchPerson('author')" value="###submit###">
+	<input type="hidden" id="authorUids" name="###prefixId###[authorUids]" value="###authorUids###">
+	</p>
+</form>
+<!-- ###searchForm### end -->
+
+<!-- ###searchRes### begin -->
+<table>
+	<!-- ###row### begin -->
+		<tr>
+			<td>###lastname###, ###firstname###</td>
+			<td><a href="javascript:parent.addPerson(###uid###,'###lastname###','###firstname###','author');">###addLabel###</a></td>
+		</tr>
+	<!-- ###row### end -->
+</table>
+<!-- ###searchRes### end -->
+
+<!-- ###noResults### -->
+<p>###content###</p>
+<!-- ###noResults### -->

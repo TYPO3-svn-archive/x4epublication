@@ -1,0 +1,4 @@
+body, table, .content-element, .content-container, body div {
+	width: 400px;
+	min-width: 400px;
+}

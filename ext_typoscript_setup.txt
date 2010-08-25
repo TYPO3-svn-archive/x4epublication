@@ -1,0 +1,161 @@
+plugin.tx_x4epublication_pi1 {
+  publicationTemplate =  typo3conf/ext/x4epublication/templates/publications.html
+  publicationTemplate =  fileadmin/{$token}/templates/ext/publications.html
+  singleViewTemplate = typo3conf/ext/x4epublication/templates/singleView.html
+  templateFile = typo3conf/ext/x4epublication/templates/list.html
+  pidList = {$publDB.pidList}
+  detailPageUid = 9858
+  authorDetailPageUid = {$persDB.detailPageUid}
+  editPageUid = {$publDB.editPageUid}
+  newPublicationPageUid = {$publDB.newPublicationPageUid}
+  editableCats = {$publDB.editableCats}
+  modeSelection = 1
+  #Start Year to start grabbing the publication from the db
+  startYear = 2002
+  excludeSubCategoryInLatestUid =
+   #includeSubCatInLatestIfAvailable =
+  listView {
+     results_at_a_time = 10
+     maxPages = 7
+    showResultCount = 1
+    showPBrowserText = 0
+    dontLinkActivePage = 1
+    tableParams = cellpadding="2" align="center"
+
+    showFirstLast = 1
+    pagefloat = center
+    showRange = 1
+    disabledLinkWrap = <span style="color:#bbb;">|</span>
+    inactiveLinkWrap = |
+    activeLinkWrap = <strong>|</strong>
+    LinksWrap =|
+    showResultsWrap = |<br />
+    showResultsNumbersWrap = |
+    browseBoxWrap =
+    browseLinksWrap = |
+  }
+  search {
+    pagebrowser {
+       wraps {
+          disabledLinkWrap = <span style="color:#bbb;">|</span>
+    inactiveLinkWrap = |
+    activeLinkWrap = <strong>|</strong>
+    LinksWrap =|
+    showResultsWrap = |<br />
+    showResultsNumbersWrap = |
+    browseBoxWrap =
+    browseLinksWrap = |
+
+       }
+    maxPages = 7
+    showResultCount = 1
+    showPBrowserText = 0
+    dontLinkActivePage = 1
+    tableParams = cellpadding="2" align="center"
+
+    showFirstLast = 1
+    pagefloat = center
+    showRange = 1
+   showFirstLast = 1
+    }
+  }
+}
+
+plugin.tx_x4epublication_pi2 = USER_INT
+plugin.tx_x4epublication_pi2 {
+	pidList = {$publDB.pidList}
+	returnPageUid = {$publDB.returnPageUid}
+	authorsSysFolderUid = {$persDB.pidList}
+	editableCats = {$publDB.editableCats}
+  templateFile = typo3conf/ext/x4epublication/templates/add.html
+  stylesheet = typo3conf/ext/x4epublication/templates/style.css
+  searchAuthorTemplateFile =  typo3conf/ext/x4epublication/templates/authorSearch.html
+  searchPublisherTemplateFile =  typo3conf/ext/x4epublication/templates/publisherSearch.html
+}
+
+
+[globalVar= GP:type=7645]
+# Configuring the Auto-Parser for main template:
+plugin.tx_automaketemplate_pi1 {
+    # Read the template file:
+  content = FILE
+  content.file = typo3conf/ext/x4epublication/templates/search.html
+ 
+    # Here we define which elements in the HTML that 
+    # should be wrapped in subpart-comments:
+  elements {
+
+    BODY.all = 1
+    BODY.all.subpartMarker = DOCUMENT_BODY
+ 
+    HEAD.all = 1
+    HEAD.all.subpartMarker = DOCUMENT_HEADER
+    HEAD.rmTagSections = title
+ 
+    TD.all = 1
+  }
+ 
+    # Prefix all relative paths with this value:
+  #relPathPrefix = fileadmin/kunsthist/_templates/main/
+}
+ 
+# Main TEMPLATE cObject for the BODY
+temp.mainTemplate = TEMPLATE
+temp.mainTemplate {
+    # Feeding the content from the Auto-parser to the TEMPLATE cObject:
+  template =< plugin.tx_automaketemplate_pi1
+    # Select only the content between the <body>-tags
+  workOnSubpart = DOCUMENT_BODY
+
+  # Substitute the ###content### subpart with some example content:
+  subparts.content < styles.content.get
+
+  subparts.personNav < temp.personNav
+}
+ 
+page = PAGE
+page.typeNum = 7645
+ 
+# Copying the content from TEMPLATE for <body>-section:
+page.10 < temp.mainTemplate
+page.includeCSS {
+   file1 = fileadmin/webbaukasten/templates/styles/base.css
+}
+[global]
+
+# *******************
+# PDF-VERSION
+# *******************
+
+[globalVar= GP:type=4444]
+
+# Default PAGE object:
+
+page = PAGE
+page.typeNum = 4444
+page.config.pageGenScript = typo3conf/ext/x4epublication/pi1/generatePdf.php
+[end]
+
+
+# *******************
+# Publication TXT-Export
+# *******************
+
+[globalVar= GP:type=4446]
+
+# Default PAGE object:
+
+page = PAGE
+page.typeNum = 4446
+page.config.disableCharsetHeader = 1
+page.config.pageGenScript = typo3conf/ext/x4epublication/pi1/generateTxt.php
+[end]
+
+plugin.tx_x4epublication_publselect {
+	templateFile = typo3conf/ext/x4epublication/templates/choosepublication.html
+	stylesheet = typo3conf/ext/x4epublication/templates/style.css
+	#publicationSearchTemplateFile = fileadmin/templates/ext/publics/publicationSearch.html
+	publicationSearchTemplateFile = typo3conf/ext/x4epublication/templates/publicationSearch.html
+	publicationSearchPageUid = {$publDB.publselect.searchPageUid}
+	authorsSysFolderUid = {$persDB.pidList}
+}

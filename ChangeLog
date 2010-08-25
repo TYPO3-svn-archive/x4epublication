@@ -1,0 +1,16 @@
+(add new changes on top of this file)
+
+2010-08-25 Michel Georgy <michel@4eyes.ch>
+	* fixed possible sql injections
+
+2010-08-25 Markus Stauffiger <markus@4eyes.ch>
+	* Cleaned up code
+	* Documented
+
+10-07-09 by alessandro@4eyes.ch
+	- Start Year for displaying publications is now configurable in typoscript by setting eg. "plugin.tx_x4epublication_pi1.startYear = 1998" 
+
+
+05-09-10 Markus Stauffiger  <markus@4eyes.ch>
+
+	* Initial release

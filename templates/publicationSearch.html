@@ -1,0 +1,70 @@
+<!-- ###searchBox### -->
+	<script type="text/javascript" src="typo3conf/ext/x4epublication/templates/code.js"></script>
+	###searchForm###
+<!-- ###searchBox### -->
+
+
+<!-- ###searchFormBox### begin -->
+<p class="close-button"><a href="javascript:parent.hidePersonSearch('publication');">###close###</a></p>
+<form id="publicationSearchForm" action="###formAction###" method="post">
+	<h1>W&auml;hlen Sie die drei gew&uuml;nschten Publikationen</h1>
+	<p>
+		<input type="text" name="###prefixId###[sword]" value="###searchWord###">
+		<input type="submit" name="###prefixId###[submit]" value="###searchLabel###">
+		###searchResult###
+	</p>
+</form>
+<!-- ###searchFormBox### end -->
+
+<!-- ###searchResBox### begin -->
+<!-- ###noResultFoundBox### begin -->
+	<p>###noResultFoundText###</p>
+<!-- ###noResultFoundBox### end -->
+
+<!-- ###latestBySubCategory### begin -->
+		###noResultFound###
+		<div style="overflow:auto; height: 200px; border: 1px solid #000000;">
+<!-- ###subCategories### -->
+		<a name="###categoryAnchor###"></a><h2>###subCategory###</h2>
+		<table class="listtable">
+		<!-- ###list### begin -->
+			<!-- ###rows### begin -->
+				<!-- ###row0### begin -->
+				<tr class="odd">
+
+					<!-- ###editCol### -->
+						<td style="width: 80px;">###editPublication###</td>
+						<td style="width: 80px;">###removePublication###</td>
+					<!-- ###editCol### -->
+					<!-- ###cell### -->
+						<td><a href="javascript:addPublication(###uid###)";>Ausw&auml;hlen</a></td>
+						<td id="content###uid###" class="pubSearchCont">###content###</td>
+					<!-- ###cell### -->
+				</tr>
+				<!-- ###row0### end -->
+
+				<!-- ###row1### begin -->
+				<tr>
+
+					<!-- ###editCol### -->
+						<td style="width: 80px;">###content###</td>
+					<!-- ###editCol### -->
+					<!-- ###cell### -->
+					<td>Ausw&auml;hlen</td>
+						<td class="pubSearchCont">###content###</td>
+					<!-- ###cell### -->
+				</tr>
+				<!-- ###row1### end -->
+			<!-- ###rows### end -->
+		<!-- ###list### end -->
+		</table>
+		
+	<!-- ###subCategories### -->
+	</div>
+	<!-- ###latestBySubCategory### begin -->
+<!-- ###searchResBox### end -->
+
+<!-- ###noResults### -->
+<p>###content###</p>
+<!-- ###noResults### -->
+
