@@ -967,6 +967,8 @@ class tx_x4epublication_pi2 extends x4epibase {
 	/**
 	 * Returns the correct label or example. Uses either TS-Override or* Locallang
 	 *
+	 * @deprecated Use typoscript "plugin...._LOCAL_LANG..." instead
+	 *
 	 * @param	string	$fieldname	Name of the current field
 	 * @return 	string				Correct label
 	 */
@@ -980,8 +982,9 @@ class tx_x4epublication_pi2 extends x4epibase {
 	
 	/**
 	 * Fills the author_sorting field for persons without sorting
-	 * 
-	 * return @void
+	 *
+	 * @param string $kindOfPerson either author or publisher
+	 * @return @void
 	 */
 	function handlePublicationWithoutAuthorSorting($kindOfPerson='author') {
 		if (($this->record[$kindOfPerson.'_sorting'] == '') && (intval($this->record['uid'])>0)) {
@@ -1094,5 +1097,9 @@ class tx_x4epublication_pi2 extends x4epibase {
 		$this->pi1->init('',$GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_'.$this->extKey.'_pi1.']);
 		$this->pi1->loadTypes();
 	}
+}
+
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epublication/pi2/class.tx_x4epublication_pi2.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epublication/pi2/class.tx_x4epublication_pi2.php']);
 }
 ?>

@@ -1,0 +1,51 @@
+
+
+1. install extension
+2. create sysfolder, add page-typscript
+	TCEFORM.tx_x4epublication_publication.authors {
+		PAGE_TSCONFIG_ID= uid of sysfolder of persons
+	}
+
+	TCEFORM.tx_x4epublication_publication.publishers {
+		PAGE_TSCONFIG_ID=uid of sysfolder of persons
+	}
+
+	TCEFORM.tx_x4epublication_publication.pub_language {
+		PAGE_TSCONFIG_STR=0
+	}
+3. create main category (does not matter)
+4. create subcategory, add fields
+	author
+	title
+	year
+5. create a page "publication", place pi1 there
+6. create a page "personal publications" below the profile page in the personal menu
+7. Create (in a access restricted area):
+	- manage publications (pi1 with edit mode)
+		- edit publication pi2
+		- new publication pi2
+8. Create a shortcut from the personal profil to the manage publication page within the profil-menu
+9. Include the typoscript templates on your root level
+10. Set the constants (see ext_typoscript_constants.txt)
+11. set the persdb constants (see x4epersdb/ext_typoscript_constants.txt)
+12. Set the correct permisions for your users
+13. set up the page types for search, pdf & text output
+
+
+
+
+List and latest view (pi1)
+Frontend editing (pi2)
+Selection of latest publications (pubselect)
+
+Templates:
+Publication form (pi2): add.html
+	- Fields for the form, view template for examples
+Author/publisher search search (pi2): authorSearch.html / publisherSearch.html
+	- Form to search for an author
+choosepublication.html (publselect): choosepublication.html
+	- Publication selection
+list view, latest view, listbysubcategory (pi1): list.html
+	- different list views for the output
+Publications (pi1): publications.html
+	- Different format of publications depending on subcategory

@@ -1,4 +1,0 @@
-<!-- ###singleView### begin -->
-
-
-<!-- ###singleView### end -->

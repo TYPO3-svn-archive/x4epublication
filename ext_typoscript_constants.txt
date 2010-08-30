@@ -1,0 +1,16 @@
+publDB{
+	# uid of the publication sysfolders containing the publications
+    pidList =
+	# uid of the page "edit publications"
+    editPageUid =
+	# uid of the page "create publications"
+    newPublicationPageUid =
+	# uid of page "manage publications"
+    returnPageUid =
+	# uid of the page "search publications" below "choose publications"
+    publselect.searchPageUid =
+	# uids of categories that are available for frontend editing, comma separated
+    editableCats =
+	# page uid for the detail view
+	detailPageUid =
+}

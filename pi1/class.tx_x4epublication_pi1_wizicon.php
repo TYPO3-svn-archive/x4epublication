@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005 Markus Stauffiger (markus@4eyes.ch)
+*  (c) 2005 Markus Stauffiger (markus-at-4eyes.ch)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,10 +24,8 @@
 /**
  * Class that adds the wizard icon.
  *
- * @author	Markus Stauffiger <markus@4eyes.ch>
+ * @author	Markus Stauffiger <markus-at-4eyes.ch>
  */
-
-
 
 class tx_x4epublication_pi1_wizicon {
 	function proc($wizardItems)	{
@@ -50,8 +48,8 @@ class tx_x4epublication_pi1_wizicon {
 	}
 }
 
-
-
-
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epublication/pi1/class.tx_x4epublication_pi1_wizicon.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epublication/pi1/class.tx_x4epublication_pi1_wizicon.php']);
+}
 
 ?>

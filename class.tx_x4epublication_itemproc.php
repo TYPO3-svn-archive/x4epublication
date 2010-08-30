@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Sk�rh�j (kasper@typo3.com)
+*  (c) 2005 4eyes GmbH (info-at-4eyes.ch)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,7 +24,7 @@
 /**
  * Class/Function which manipulates the item-array for the listing
  *
- * @author	Markus Stauffiger <markus@4eyes.ch>
+ * @author	Markus Stauffiger <markus-at-4eyes.ch>
  */
 class tx_x4epublication_itemproc {
 
@@ -52,7 +52,7 @@ class tx_x4epublication_itemproc {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epublication/class.tx_x4epublication_tx_x4epublication_tca_proc.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epublication/class.tx_x4epublication_tx_x4epublication_tca_proc.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epublication/class.tx_x4epublication_itemproc.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epublication/class.tx_x4epublication_itemproc.php']);
 }
 ?>

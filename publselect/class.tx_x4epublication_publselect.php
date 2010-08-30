@@ -24,7 +24,7 @@
 /**
  * Plugin 'Publications select' for the 'x4epublication' extension.
  *
- * @author	Markus Stauffiger <markus@4eyes.ch>
+ * @author	Markus Stauffiger <markus-at-4eyes.ch>
  */
 
 require_once(t3lib_extMgm::extPath('x4epibase').'class.x4epibase.php');
