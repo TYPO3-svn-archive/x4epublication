@@ -5,7 +5,7 @@ plugin.tx_x4epublication_pi1 {
 	# template of publications containing the different output types
 	publicationTemplate =  typo3conf/ext/x4epublication/templates/publications.html
 
-	# template for single vie
+	# template for single view
 	singleViewTemplate = typo3conf/ext/x4epublication/templates/singleView.html
   
 	# template file for list view
@@ -29,14 +29,14 @@ plugin.tx_x4epublication_pi1 {
 	# uids of categories that are available for frontend editing, comma separated
 	editableCats = {$publDB.editableCats}
 
-	# selection of the different views
+	# selection of the different views, overriden by flexform
 	# 1: listBySubCategory
 	# 2: listBySubCategory with edit buttons
 	# 3: singleView
 	# 4: listView
 	modeSelection = 1
 
-	#Start Year to start grabbing the publication from the db
+	#Start year to start grabbing the publication from the db
 	startYear = 2002
 
 	# dont display these categories in the latest view
@@ -48,7 +48,7 @@ plugin.tx_x4epublication_pi1 {
 	# wrap for the year box
 	yearBoxWrap =
 
-	# uids of languages to generate the select box
+	# uids of languages to be available the select box
 	langList =
 
 	# disable persdb usage (not 100% sure where this makes sense)
@@ -63,7 +63,7 @@ plugin.tx_x4epublication_pi1 {
 	# disable multiple language feature
 	disableMultiLang =
 
-	#list view with standard tslib_pibase page browser
+	#list view with standard tslib_pibase page browser (deprecated???)
 	listView {
 		results_at_a_time = 10
 		maxPages = 7
@@ -126,13 +126,13 @@ plugin.tx_x4epublication_pi2 {
 	authorsSysFolderUid = {$persDB.pidList}
 	# uids of categories that are available for frontend editing, comma separated
 	editableCats = {$publDB.editableCats}
-	# template for the different forms
+	# template for the different form elements
 	templateFile = typo3conf/ext/x4epublication/templates/add.html
 	# stylesheet to use for the forms
 	stylesheet = typo3conf/ext/x4epublication/templates/style.css
 	# template for the author search
 	searchAuthorTemplateFile =  typo3conf/ext/x4epublication/templates/authorSearch.html
-	# template fro the publishers search
+	# template for the publishers search
 	searchPublisherTemplateFile =  typo3conf/ext/x4epublication/templates/publisherSearch.html
 
 	# default language for publication (uid of record in language table)
@@ -162,7 +162,7 @@ plugin.tx_x4epublication_publselect {
 
 
 ########
-# search form
+# author search form
 ########
 
 [globalVar= GP:type=7645]
