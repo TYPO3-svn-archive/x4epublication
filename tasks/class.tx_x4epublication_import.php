@@ -73,7 +73,7 @@ class tx_x4epublication_import extends tx_scheduler_Task {
 		// if an resumptionToken is set get further data
 		while($xmlArr[$count]->ListRecords->resumptionToken != '' && $count < $this->config['maxresumptionToken']){
 			$url = $resumptionurl . $xmlArr[$count]->ListRecords->resumptionToken[0];
-			$xmlstr = $this->file_post_contents($url,false,$this->oaiuser,$this->oaip);
+			$xmlstr = $this->file_post_contents($url,false,$this->oaiuser,$this->oaipw);
 			if(strpos($xmlstr,"401 Authorization Required")!==false) {
 			$this->addMessage('Authorization failed. Wrong User/PW or URL.', t3lib_FlashMessage::ERROR);
 			return false;
