@@ -131,18 +131,18 @@ If you change anything in the div "authorTemplate" please check code.js to match
 	    		<p>
 	    			<label for="extAutFirstname">Vorname</label><br /><input type="text" id="extAutFirstname" size="30" />
 	    		</p>
-	    		<p><a href="#" onclick="addExternalPerson('author');Element.hide('externalAuthor')"><img src="fileadmin/histsem/_templates/images/icon_new.gif" height="9" width="9"> Hinzuf&uuml;gen</a><br /></p>
-	    		<p><a href="#" onclick="Element.hide('externalAuthor')">Schliessen</a></p>
+	    		<p><a href="#" onclick="addExternalPerson('author');Element.hide('externalAuthor');return false;"><img src="fileadmin/histsem/_templates/images/icon_new.gif" height="9" width="9"> Hinzuf&uuml;gen</a><br /></p>
+	    		<p><a href="#" onclick="Element.hide('externalAuthor');return false;">Schliessen</a></p>
 	    	</div>
 	    	<p><strong><label for="###prefixId###[authors]">###label###*:</label></strong><br /></p>
 	    	<p>
-	    		<a href="javascript:showPersonSearch('author');">
+	    		<a href="javascript:showPersonSearch('author');return false;">
 	    			<img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" />
 	    			###addInternalAuthor###
 	    		</a>
 	    	</p>
 	    	<p>
-	    		<a href="#author" onclick="Element.show('externalAuthor');">
+	    		<a href="#author" onclick="Element.show('externalAuthor');return false;">
 	    			<img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" />
 	    			###addExternalAuthor###
 	    		</a>
@@ -153,8 +153,8 @@ If you change anything in the div "authorTemplate" please check code.js to match
 	    	<ul style="display:none" id="authorTemplate">
 	    		<li id="author_###actualUserUid###">
 	    			<a href="javascript:removePerson('###actualUserUid###','author','###actualUserFirstname### ###actualUserName###')"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Autor entfernen" title="Autor entfernen" /></a>
-	    			<a href="javascript:void();" onclick="movePersonUp('author','###actualUserUid###');"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Autor nach oben schieben" title="Autor nach oben schieben" /></a>
-					<a href="javascript:void();" onclick="movePersonDown('author','###actualUserUid###');"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Autor nach unten schieben" title="Autor nach unten schieben" /></a>	    			
+	    			<a href="javascript:void();" onclick="movePersonUp('author','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Autor nach oben schieben" title="Autor nach oben schieben" /></a>
+					<a href="javascript:void();" onclick="movePersonDown('author','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Autor nach unten schieben" title="Autor nach unten schieben" /></a>
 	    			###actualUserName### ###actualUserFirstname###
 	    		</li>
 	    	</ul>
@@ -162,8 +162,8 @@ If you change anything in the div "authorTemplate" please check code.js to match
 	    		<!-- ###author### -->
 	    		<li id="author_###actualUserUid###">
 	    			<a href="javascript:removePerson('###actualUserUid###','author','###actualUserFirstname### ###actualUserName###')"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Autor entfernen" title="Autor entfernen" /></a>
-	    			<a href="javascript:void();" onclick="movePersonUp('author','###actualUserUid###');"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Autor nach oben schieben" title="Autor nach oben schieben" /></a>
-					<a href="javascript:void();" onclick="movePersonDown('author','###actualUserUid###');"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Autor nach unten schieben" title="Autor nach unten schieben" /></a>	    			
+	    			<a href="javascript:void();" onclick="movePersonUp('author','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Autor nach oben schieben" title="Autor nach oben schieben" /></a>
+					<a href="javascript:void();" onclick="movePersonDown('author','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Autor nach unten schieben" title="Autor nach unten schieben" /></a>
 	    			###actualUserName### ###actualUserFirstname###
 	    		</li><!-- ###author### -->
 	    	</ul>
@@ -193,18 +193,18 @@ If you change anything in the div "authorTemplate" please check code.js to match
 	    		<p>
 	    			<label for="extPublFirstname">Vorname</label><br /><input type="text" id="extPublFirstname" size="30" />
 	    		</p>
-	    		<p><a href="#publisher" onclick="addExternalPerson('publisher');Element.hide('externalPublisher')"><img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" /> Hinzuf&uuml;gen</a><br /></p>
-	    		<p><a href="#publisher" onclick="Element.hide('externalPublisher')">Schliessen</a></p>
+	    		<p><a href="#publisher" onclick="addExternalPerson('publisher');Element.hide('externalPublisher');return false;"><img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" /> Hinzuf&uuml;gen</a><br /></p>
+	    		<p><a href="#publisher" onclick="Element.hide('externalPublisher');return false;">Schliessen</a></p>
 	    	</div>
 	    	<p><strong><label for="tx_x4epublication_pi2[publishers]">Herausgeber*:</label></strong><br /></p>
 	    	<p>
-	    		<a href="#publisher" onclick="showPersonSearch('publisher');">
+	    		<a href="#publisher" onclick="showPersonSearch('publisher');return false;">
 	    			<img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" />
 	    			Internen Herausgeber hinzufügen
 	    		</a>
 	    	</p>
 	    	<p>
-	    		<a href="#publisher" onclick="Element.show('externalPublisher');">
+	    		<a href="#publisher" onclick="Element.show('externalPublisher');return false;">
 	    			<img src="typo3conf/ext/x4epublication/templates/images/new.gif" height="9" width="9" />
 	    			Externen Herausgeber hinzufügen
 	    		</a>
@@ -214,7 +214,7 @@ If you change anything in the div "authorTemplate" please check code.js to match
 	    <td valign="top" nowrap="nowrap">
 	    	<ul style="display:none" id="publisherTemplate">
 	    		<li id="publisher_###actualUserUid###">
-	    			<a href="#publisher" onclick="removePerson('###actualUserUid###','publisher','###actualUserFirstname### ###actualUserName###')"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Herausgeber entfernen" title="Herausgeber entfernen" /></a>
+	    			<a href="#publisher" onclick="removePerson('###actualUserUid###','publisher','###actualUserFirstname### ###actualUserName###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Herausgeber entfernen" title="Herausgeber entfernen" /></a>
 	    			<a href="#publisher" onclick="movePersonUp('publisher','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Herausgeber nach oben schieben" title="Herausgeber nach oben schieben" /></a>
 					<a href="#publisher" onclick="movePersonDown('publisher','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Herausgeber nach unten schieben" title="Herausgeber nach unten schieben" /></a>
 					###actualUserName### ###actualUserFirstname###
@@ -223,7 +223,7 @@ If you change anything in the div "authorTemplate" please check code.js to match
 	    	<ul id="publisherContainer">
 	    		<!-- ###publisher### -->
 	    		<li id="publisher_###actualUserUid###">
-	    			<a href="#publisher" onclick="removePerson('###actualUserUid###','publisher','###actualUserFirstname### ###actualUserName###')"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Herausgeber entfernen" title="Herausgeber entfernen" /></a>
+	    			<a href="#publisher" onclick="removePerson('###actualUserUid###','publisher','###actualUserFirstname### ###actualUserName###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/delete.gif" width="9" height="9" alt="Herausgeber entfernen" title="Herausgeber entfernen" /></a>
 	    			<a href="#publisher" onclick="movePersonUp('publisher','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/up.gif" alt="Herausgeber nach oben schieben" title="Herausgeber nach oben schieben" /></a>
 					<a href="#publisher" onclick="movePersonDown('publisher','###actualUserUid###');return false;"><img src="typo3conf/ext/x4epublication/templates/images/down.gif" alt="Herausgeber nach unten schieben" title="Herausgeber nach unten schieben" /></a>
 					###actualUserName### ###actualUserFirstname###

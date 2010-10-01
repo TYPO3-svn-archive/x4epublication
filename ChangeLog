@@ -1,3 +1,6 @@
+2010-10-01 Markus Stauffiger <markus-at-4eyes.ch>
+	* Updated add.html to include return false in all onclick events
+
 2010-08-31 Markus Stauffiger <markus-at-4eyes.ch>
 	* Updated typoscript documentation
 	* Added manual
