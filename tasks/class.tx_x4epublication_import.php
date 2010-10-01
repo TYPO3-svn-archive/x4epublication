@@ -61,10 +61,7 @@ class tx_x4epublication_import extends tx_scheduler_Task {
 			$this->addMessage('Authorization failed. Wrong User/PW or URL.', t3lib_FlashMessage::ERROR);
 			return false;
 		}
-		$xmlstr = str_replace("iso-8859-1", "utf-8", $xmlstr);
-		$xmlstr = iconv("windows-1252", "utf-8", $xmlstr);
 		
-		if ($this->showxml) print_r(($xmlstr));
 		$xmlArr = array();
 		$import = array();
 		$xmlArr[0] = new SimpleXMLElement($xmlstr);
@@ -78,9 +75,6 @@ class tx_x4epublication_import extends tx_scheduler_Task {
 			$this->addMessage('Authorization failed. Wrong User/PW or URL.', t3lib_FlashMessage::ERROR);
 			return false;
 		}
-			$xmlstr = str_replace("iso-8859-1", "utf-8", $xmlstr);
-			$xmlstr = iconv("windows-1252", "utf-8", $xmlstr);
-			if ($this->showxml) print_r(($xmlstr));
 			$count++;
 			$xmlArr[$count] = new SimpleXMLElement($xmlstr);
 		}
