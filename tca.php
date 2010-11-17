@@ -380,8 +380,9 @@ $TCA["tx_x4epublication_publication"] = Array (
 			"exclude" => 0,
 			"label" => "LLL:EXT:x4epublication/locallang_db.php:tx_x4epublication_publication.description",
 			"config" => Array (
-				"type" => "input",
-				"size" => "30",
+				"type" => "text",
+				"cols" => "30",
+				"rows" => "5",
 			)
 		),
 		"url" => Array (
@@ -457,7 +458,7 @@ $TCA["tx_x4epublication_publication"] = Array (
 	),
 	"types" => Array (
 		//"0" => Array("showitem" => "hidden;;1;;1-1-1, category_sub, auth_publ, authors, authors_ext, publishers, publishers_ext, title;;;;2-2-2, location;;;;3-3-3, run, year, pub_language, volume, magazine_title, magazine_year, magazine_issue, anthology_title, anthology_publisher,abstract;;;richtext[paste|bold|italic|formatblock|class|orderedlist|unorderedlist|link]:rte_transform[flag=rte_enabled|mode=ts], pages, event_date, other_redaction, department_id, keywords, jel_classification, daymonth, url, file_ref, impact, publ_company")
-		"0" => Array("showitem" => "hidden;;1;;1-1-1, category_sub, auth_publ, authors, authors_ext, publishers, publishers_ext, title;;;;2-2-2, location;;;;3-3-3, run, year, pub_language, volume, magazine_title, magazine_year, magazine_issue, anthology_title, anthology_publisher,abstract;;;richtext[paste|bold|italic|formatblock|class|orderedlist|unorderedlist|link]:rte_transform[flag=rte_enabled|mode=ts], pages, event_date, other_redaction, keywords, jel_classification, daymonth, url, file_ref, impact, publ_company")
+		"0" => Array("showitem" => "hidden;;1;;1-1-1, category_sub, auth_publ, authors, authors_ext, publishers, publishers_ext, title, description, location;;;;3-3-3, run, year, pub_language, volume, magazine_title, magazine_year, magazine_issue, anthology_title, anthology_publisher,abstract;;;richtext[paste|bold|italic|formatblock|class|orderedlist|unorderedlist|link]:rte_transform[flag=rte_enabled|mode=ts], pages, event_date, other_redaction, keywords, jel_classification, daymonth, url, file_ref, impact, publ_company")
 	),
 	"palettes" => Array (
 		"1" => Array("showitem" => "")

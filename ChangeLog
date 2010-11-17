@@ -1,3 +1,6 @@
+2010-11-17 Markus Stauffiger (markus-at-4eyes.ch)
+	* Changed description field from type text to type input, added it to the field-list
+
 2010-10-01 Markus Stauffiger <markus-at-4eyes.ch>
 	* Updated add.html to include return false in all onclick events
 
