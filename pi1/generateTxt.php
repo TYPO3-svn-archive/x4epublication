@@ -194,6 +194,10 @@ require_once('typo3conf/ext/x4epublication/rtf/class_rtf.php');
 
  // We'll be outputting a rtf
 	$rtf->getDocument();
-	$rtf->addText(readfile($file));
+	if(!empty($file)){
+		$rtf->addText(readfile($file));
+	} else {
+		die('Empty Filename.');
+	}
 
 ?>

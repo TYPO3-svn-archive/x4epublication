@@ -14,6 +14,7 @@ $LOCAL_LANG = Array (
 		'modeSelection.1' => 'List by category',
 		'modeSelection.2' => 'List by category with edit-icon',
 		'modeSelection.3' => 'Detail View',
+		'modeSelection.4' => 'List by author department',
 		'editPageUid' => 'Page on which to edit the publications',
 		'newPublicationPageUid' => 'Page on which to create a publication',
 	),
@@ -25,6 +26,7 @@ $LOCAL_LANG = Array (
 		'modeSelection.1' => 'Liste nach Kategorien',
 		'modeSelection.2' => 'Liste nach Kategorien (inkl. edit)',
 		'modeSelection.3' => 'Detail Ansicht',
+		'modeSelection.4' => 'Liste nach Departement des Autors',
 		'editPageUid' => 'Seite um die Publikationen zu bearbeiten',
 		'newPublicationPageUid' => 'Zum Erfassen auf diese Seite wechseln',
 	)

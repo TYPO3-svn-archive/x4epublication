@@ -38,7 +38,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_x4epublicati
 	'additionalFields' => 'tx_x4epublication_import_additionalfieldprovider'
 );
 
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_x4epublication_rsspubimport'] = array(
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_x4epublication_RssPubImport'] = array(
     'extension'        => $_EXTKEY,
     'title'            => 'RSS Publication import',
     'description'      => 'imports new or updated publications',

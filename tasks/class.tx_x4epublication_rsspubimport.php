@@ -24,6 +24,22 @@
 require_once(PATH_site.'fileadmin/localconfs/publication_import_localconf.php');
 class tx_x4epublication_RssPubImport extends tx_scheduler_Task {
 
+<<<<<<< .mine
+	var $url;
+	var $personPid ;
+	var $pubPid;
+	var $category = 136;
+	var $currentPerson;
+	var $tablePersDb = 'tx_x4epersdb_person';
+	var $tablePublDb = 'tx_x4epublication_publication';
+	var $tablePublDbMMAuthor = 'tx_x4epublication_publication_persons_auth_mm';
+	var $tablePublDbMMPublisher = 'tx_x4epublication_publication_persons_publ_mm';
+	var $pubCount = 0;
+	var $errCount = 0;
+		
+	/**
+	 * CONSRTUCTOR?
+=======
 	var $url;
 	var $personPid ;
 	var $pubPid;
@@ -38,6 +54,7 @@ class tx_x4epublication_RssPubImport extends tx_scheduler_Task {
 	
 	/**
 	 * CONSRTUCTOR?
+>>>>>>> .r40720
 	 */
 	 /*
 	public function __construct($personPid, $pubPid){
@@ -51,6 +68,29 @@ class tx_x4epublication_RssPubImport extends tx_scheduler_Task {
 	*/
 	
 	public function execute() {
+<<<<<<< .mine
+		// get id's of old publications
+		$oldPublications = $this->getOldPublications();
+		$persons = $this->getPersonWithRssUrl();
+		if ($persons != ''){
+			foreach($persons as $this->currentPerson){
+				$rssXmlStr = $this->file_post_contents($this->currentPerson['rssUrl']);
+				
+				$rssXml = new SimpleXMLElement($rssXmlStr);
+			
+				if($rssXml != ''){
+					$this->doImport($rssXml);
+				}
+			}
+		}
+		
+		// remove old publications
+		if($this->pubCount > 0){
+			$this->removeOldPublications($oldPublications);
+		}
+		
+		echo $this->pubCount . " Publications imported <br>";
+=======
 		// get id's of old publications
 		$oldPublications = $this->getOldPublications();
 		$persons = $this->getPersonWithRssUrl();
@@ -72,6 +112,7 @@ class tx_x4epublication_RssPubImport extends tx_scheduler_Task {
 		}
 		
 		echo $this->pubCount . " Publications imported <br>";
+>>>>>>> .r40720
 		echo $this->errCount . " Errors";
 	}
 	

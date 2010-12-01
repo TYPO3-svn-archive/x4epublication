@@ -51,6 +51,8 @@ $LOCAL_LANG = Array (
 		'fromLabel' => 'von:',
 		'toLabel' => 'bis:',
 		'pubLanguageLabel' => 'Sprache:',
+		'popup_show' => 'Abriss',
+		'url' => 'Link'
 	),
 	'en' => Array(
 		'listFieldHeader_category_sub' => 'Category',
@@ -97,6 +99,8 @@ $LOCAL_LANG = Array (
 		'fromLabel' => 'from:',
 		'toLabel' => 'to:',
 		'pubLanguageLabel' => 'Language:',
+		'popup_show' => 'Abstract',
+		'url' => 'Link'
 	),
 	'de' => Array (
 		'listFieldHeader_category_sub' => 'Kategorie',
@@ -143,6 +147,8 @@ $LOCAL_LANG = Array (
 		'fromLabel' => 'von:',
 		'toLabel' => 'bis:',
 		'pubLanguageLabel' => 'Sprache:',
+		'popup_show' => 'Abriss',
+		'url' => 'Link'
 	),
 	'fr' => Array (
 		'listFieldHeader_category_sub' => 'Catégorie',
@@ -189,6 +195,7 @@ $LOCAL_LANG = Array (
 		'fromLabel' => 'de:',
 		'toLabel' => 'jusque à:',
 		'pubLanguageLabel' => 'langue: ',
+		'url' => 'Link'
 	),
 	'it' => Array (
 		'listFieldHeader_category_sub' => 'Categoria',
@@ -235,6 +242,7 @@ $LOCAL_LANG = Array (
 		'fromLabel' => 'da:',
 		'toLabel' => 'a:',
 		'pubLanguageLabel' => 'Lingua: ',
+		'url' => 'Link'
 	),
 );
 ?>

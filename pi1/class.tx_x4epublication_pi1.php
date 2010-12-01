@@ -84,6 +84,12 @@ class tx_x4epublication_pi1 extends x4epibase {
 	 * @var string
 	 */
 	var $personTable = 'tx_x4epersdb_person';
+	
+	/**
+	 * Name of the table containing the mm relations between persons and departments
+	 * @var string
+	 */
+	var $personDepMMTable = 'tx_x4epersdb_person_department_mm';
 
 	/**
 	 * Instance of the person plugin
@@ -200,6 +206,15 @@ class tx_x4epublication_pi1 extends x4epibase {
 	 * @return string Html formated output
 	 */
 	function main($content,$conf)	{
+	
+		/**
+		 * Add additional JavaScript and CSS for abstractView in popup
+		 */
+		$GLOBALS['TSFE']->additionalHeaderData[$this->extKey] .='<script type="text/javascript" src="typo3conf/ext/x4epublication/res/windows.js"></script>';
+		$GLOBALS['TSFE']->additionalHeaderData[$this->extKey] .='<script type="text/javascript" src="typo3conf/ext/x4epublication/res/window_effects.js"></script>';
+		$GLOBALS['TSFE']->additionalHeaderData[$this->extKey] .='<script type="text/javascript" src="typo3conf/ext/x4epublication/res/popup.js"></script>';
+		$GLOBALS['TSFE']->additionalHeaderData[$this->extKey] .= '<link rel="stylesheet" type="text/css" href="typo3conf/ext/x4epublication/res/style.css" media="all" />';
+	
 		$this->init($content,$conf);
 		switch ($this->getTSFFvar('modeSelection')) {
 			case '1':
@@ -220,6 +235,8 @@ class tx_x4epublication_pi1 extends x4epibase {
 			case '3':
 		 		$content = $this->singleView($this->piVars['singleUid']);
 			break;
+			case '4':
+				$content = $this->listByMainCategory();
 			default:
 				$content = $this->listView($content,$conf);
 			break;
@@ -376,11 +393,15 @@ class tx_x4epublication_pi1 extends x4epibase {
 	function listByMainCategory($authorUid=0) {
 		$out = '';
 		$where = '';
+		$persExt = explode('_',$this->personExtPrefix);
 			// add subquery to get only publication which the author is involved in
 		if (intval($authorUid) > 0) {
 			$where = 'uid IN ('.$GLOBALS['TYPO3_DB']->SELECTquery('uid_local',$this->authorMMTable,'uid_foreign = '.intval($authorUid)).')';
 		}
+		
 		$this->template = $this->cObj->getSubpart($this->template,'###latestByMainCategory###');
+		
+		
 
 			// get all main categories
 		$res = $this->pi_exec_query('tx_x4epublication_category_main');
@@ -393,8 +414,15 @@ class tx_x4epublication_pi1 extends x4epibase {
 		while ($mainCat = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 				// generate subquery which gets all subcategories from one category
 			$subQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid','tx_x4epublication_category_sub','cat_main = '.intval($mainCat['uid']));
+				// get authors from defined department IF department is selected and persDB is loaded
+			if(intval($this->conf['showOnlyPublFromDep']) > 0 && t3lib_extMgm::isLoaded($persExt[1])){
+				$depSub = $GLOBALS['TYPO3_DB']->SELECTquery('uid_local',$this->personDepMMTable,'uid_foreign = '.$this->conf['showOnlyPublFromDep']);
+				$dep = ' AND FIND_IN_SET (\''.$depSub.'\',authors)';
+			} else {
+				$dep = '';
+			}
 				// get publications
-			$publ = $this->pi_exec_query('tx_x4epublication_publication',0,$where.' AND category_sub IN ('.$subQ.')');
+			$publ = $this->pi_exec_query('tx_x4epublication_publication',0,$where.' AND category_sub IN ('.$subQ.')'.$dep);
 				// set markers
 			$mArr['###mainCategory###'] = $mainCat['title'];
 			$subPArr['###publications###'] = $this->pi_list_makelist($publ);
@@ -436,6 +464,7 @@ class tx_x4epublication_pi1 extends x4epibase {
 
 			// additional ORDER BY statement
 		$addOrderBy = $this->table.'.year DESC, .'.$this->table.'.tstamp DESC';
+
 
 			// add subquery to get only publication which the author is involved in
 		if (intval($authorUid) > 0) {
@@ -487,7 +516,8 @@ class tx_x4epublication_pi1 extends x4epibase {
 		if (intval($authorUid) > 0 || $this->piVars['submit'] || $this->piVars['showAll'] || $this->piVars['yearfrom']) {
 			$subWhere = '';
 			
-			if(!intval($this->getTSFFvar('disableMultiLang'))){
+			// disalbe Multilang to display publications even if another language is default than publications have been created in
+			if(intval($this->getTSFFvar('disableMultiLang')) < 1){
 			if(intval($GLOBALS['TSFE']->sys_language_uid) > 0){
 				$subWhere = ' AND sys_language_uid = '.intval($GLOBALS['TSFE']->sys_language_uid);
 			}
@@ -500,7 +530,7 @@ class tx_x4epublication_pi1 extends x4epibase {
 			
 				// get all main categories
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*',$this->subCatTable,'pid IN ('.$this->conf['pidList'].')'.$subWhere.$addWhere.$this->cObj->enableFields($this->subCatTable),'',$TCA[$this->subCatTable]['ctrl']['sortby']);
-
+			
 				// loop over main categories to get sub categories and after all, the publications
 			$where .= $this->generateSearchQuery();
 			
@@ -515,6 +545,16 @@ class tx_x4epublication_pi1 extends x4epibase {
 			} else {
 				$addOrderBy = $this->table.'.year DESC,'.$this->table.'.author_sorting_text';
 			}
+			
+			// user sorting by manuel - 26.10.2010
+			if(!empty($this->conf['listView.']['manualOrderBy'])){
+				if($this->conf['listView.']['orderOverwrite'] == 1){
+					$addOrderBy = $this->conf['listView.']['manualOrderBy'];
+				} else {
+					$addOrderBy .= $this->conf['listView.']['manualOrderBy'];
+				}
+			}
+			// user sorting - end
 
 			$categoryJumpT = $this->cObj->getSubpart($categoryJumpBoxT,'###jumpToCategory###');
 			$count = 0;
@@ -535,27 +575,36 @@ class tx_x4epublication_pi1 extends x4epibase {
 					$aWhere = ' AND fdb_id = 0 ';
 				}
 				
+				// filter for persDB department
 				if ($this->conf['showOnlyPublWithAuthorFromDepartment']) {
 					$subQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_local','tx_x4epersdb_person_department_mm','uid_foreign = '.intval($this->conf['showOnlyPublWithAuthorFromDepartment']));
 					$addWhere .= ' AND '.$this->table.'.uid IN ('.$GLOBALS['TYPO3_DB']->SELECTquery('uid_local',$this->authorMMTable,'uid_foreign IN ('.$subQ.')').')';
-
 				}
 
+				// filter for researchDB researchgroup
 				if ($this->conf['showOnlyPublWithAuthorFromResearchgroup']) {
 					$subQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_foreign','tx_x4eresearch_researchgroup_head_mm','uid_local = '.intval($this->conf['showOnlyPublWithAuthorFromResearchgroup']));
-					$addWhere .= ' AND '.$this->table.'.uid IN ('.$GLOBALS['TYPO3_DB']->SELECTquery('uid_local',$this->authorMMTable,'uid_foreign IN ('.$subQ.')').')';
+					if($this->conf['showPublOfTeamMembers']){
+						$subQ2 = $GLOBALS['TYPO3_DB']->SELECTquery('uid_foreign','tx_x4eresearch_researchgroup_members_mm','uid_local = '.intval($this->conf['showOnlyPublWithAuthorFromResearchgroup']));
+						$addWhere .= ' AND '.$this->table.'.uid IN ('.$GLOBALS['TYPO3_DB']->SELECTquery('uid_local',$this->authorMMTable,'uid_foreign IN ('.$subQ.') OR uid_foreign IN ('.$subQ2.')').')';	
+					}else{
+						$addWhere .= ' AND '.$this->table.'.uid IN ('.$GLOBALS['TYPO3_DB']->SELECTquery('uid_local',$this->authorMMTable,'uid_foreign IN ('.$subQ.')').')';
+					}
+					
+					
 				}
 				unset($mm_cat);
 					// first get query, add DISTINCT and run it
 				$publQ = $this->pi_list_query($this->table,0,$where.$aWhere.' AND category_sub ='.$subCat['uid'].$addWhere,$mm_cat,'',$addOrderBy);
 
 				$publQ  = str_replace('SELECT ', 'SELECT DISTINCT ',$publQ);
-				
+
 				//$publ = $this->pi_exec_query('tx_x4epublication_publication',0,$where.' AND category_sub ='.$subCat['uid'],$mm_cat,'',$addOrderBy);
 				$publ = $GLOBALS['TYPO3_DB']->sql_query($publQ);
 					// set markers
 
 				$uids = array();
+				
 				$count += $GLOBALS['TYPO3_DB']->sql_num_rows($publ);
 				if ($GLOBALS['TYPO3_DB']->sql_num_rows($publ) > 0) {
 					$mArr['###subCategory###'] = $subCat['title_plural'];
@@ -571,6 +620,7 @@ class tx_x4epublication_pi1 extends x4epibase {
 
 				$GLOBALS['TYPO3_DB']->sql_free_result($publ);
 			}
+			
 			$GLOBALS['TYPO3_DB']->sql_free_result($res);
 			$subP['###subCategories###'] = $out;
 			if (intval($authorUid) > 0) {
@@ -588,6 +638,8 @@ class tx_x4epublication_pi1 extends x4epibase {
 			$subP['###subCategories###'] = '';
 			$mArr['###noResultFound###'] = '';
 		}
+		
+		
 		$mArr['###prefixId###'] = $this->prefixId;
 		return $this->cObj->substituteMarkerArrayCached($tmpl,$mArr,$subP);
 	}
@@ -737,7 +789,7 @@ class tx_x4epublication_pi1 extends x4epibase {
 					case 'url':
 						$subT = $this->cObj->getSubpart($this->types[$publ['category_sub']]['template'],'###'.$col.'_box###');
 						if ($publ[$col] != '') {
-							$subParts['###'.$col.'_box###'] = $this->cObj->substituteMarker($subT,'###'.$col.'###',$this->cObj->gettypolink('Link',$publ[$col]));
+							$subParts['###'.$col.'_box###'] = $this->cObj->substituteMarker($subT,'###'.$col.'###',$this->cObj->gettypolink($this->pi_getLL('url'),$publ[$col]));
 						} else {
 							$subParts['###'.$col.'_box###'] = '';
 						}
@@ -750,6 +802,9 @@ class tx_x4epublication_pi1 extends x4epibase {
 						} else {
 							$subParts['###'.$col.'_box###'] = '';
 						}
+					break;
+					case 'file_ref':
+						$subParts['###'.$col.'_box###'] = $this->getFileRef($publ);
 					break;
 					default:
 						$subT = $this->cObj->getSubpart($this->types[$publ['category_sub']]['template'],'###'.$col.'_box###');
@@ -764,6 +819,60 @@ class tx_x4epublication_pi1 extends x4epibase {
 			}
 			
 			$detailPage = $this->conf['detailPageUid'];
+			
+			$sep = explode(';',$this->conf['listView.']['dlSeparators']);
+			
+			// Check for available abstract
+			if($publ['abstract'] != ''){
+				
+				$mArr['###popup_show###'] = $this->pi_getLL('popup_show'); // popup-triggering text
+				//$mArr['###popup_hide###'] = $this->pi_getLL('popup_hide');
+				$piVars = $this->piVars;
+				$piVars['singleUid'] = $publ['uid'];
+				if(isset($this->piVars['singleUid'])){
+					$this->piVars['singleUid'] = '';
+					$this->piVars['pointer'] = '';
+					$piVars['singleUid'] = '';
+					$piVars['pointer'] = '';
+				}
+				
+				// set separator for multiple linkbox entries
+				$mArr['###linkBefore###'] = '';
+				if($publ['file_ref'] != '' | $publ['url'] != ''){
+					$mArr['###linkAfter###'] = " $sep[1] ";
+				}else if($publ['file_ref'] != '' && $publ['url'] == ''){
+					$mArr['###linkAfter###'] = " $sep[1] ";;
+				}else{
+					$mArr['###linkAfter###'] = '';
+				}
+				
+				$mArr['###detailLinkStart###'] = str_replace('</a>','',$this->pi_linkTP_keepPIvars('Abstract',$piVars,1,1,$detailPage));
+				$mArr['###detailLinkEnd###'] = '</a>';
+				$mArr['###linkText###'] = '';
+				$mArr['###backLink###'] = $this->pi_LinkTP_keepPIvars($this->pi_getLL('back'),array(),0,0,$listPage);	
+			}else{
+				$mArr['###popup_show###'] = '';
+				$mArr['###popup_hide###'] = '';
+				$mArr['###linkBefore###'] = '';
+				$mArr['###linkAfter###'] = '';				
+				$mArr['###detailLinkStart###'] = '';
+				$mArr['###detailLinkEnd###'] = '';
+				$mArr['###linkText###'] = '';
+				$mArr['###backLink###'] = '';		
+			}
+			
+			$mArr['###uid###'] = $publ['uid'];
+			
+			// set start and end marker for linkbox
+			$subT = $this->cObj->getSubpart($this->types[$publ['category_sub']]['template'],'###seperator###');
+			if($publ['file_ref'] != '' | $publ['url'] != '' | $publ['abstract'] != ''){
+				$mArr['###seperatorRight###'] = $sep[2];
+				$mArr['###seperatorLeft###'] = $sep[0];
+			}else{
+				$mArr['###seperatorRight###'] = '';
+				$mArr['###seperatorLeft###'] = '';
+			}
+			
 			$mArr['###detailLinkStart###'] = str_replace('&nbsp;</a>','',$this->pi_linkTP_keepPIvars('&nbsp;',array('singleUid'=> $publ['uid']),1,1,$detailPage));
 			$mArr['###detailLinkEnd###'] = '</a>';
 			$mArr['###uid###'] = $publ['uid'];
@@ -772,6 +881,29 @@ class tx_x4epublication_pi1 extends x4epibase {
 		} else {
 			return '';
 		}
+	}
+	
+	/**
+	 * gets the fileref and adds a "/" if the url is filled
+	 * 
+	 * @author Leo Rotzler <leo@4eyes.ch>
+	 * @param array $publ
+	 * @return string
+	 */
+	function getFileRef($publ){
+		$subT = $this->cObj->getSubpart($this->types[$publ['category_sub']]['template'],'###file_ref_box###');
+		if ($publ['file_ref'] == '') {
+			return '';
+		}
+		
+		if($publ['url'] != ''){
+			$mArr['file_refEnd'] = ' / ';
+		}else{
+			$mArr['file_refEnd'] = '';
+		}
+		
+		$mArr['file_ref'] = $publ['file_ref'];	
+		return $this->cObj->substituteMarkerArray($subT,$mArr,'###|###');
 	}
 
 	/**

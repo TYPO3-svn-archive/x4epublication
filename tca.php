@@ -175,7 +175,7 @@ $TCA["tx_x4epublication_publication"] = Array (
 			"config" => Array (
 				"type" => "select",
 				"foreign_table" => "tx_x4epersdb_person",
-				"foreign_table_where" => "AND tx_x4epersdb_person.pid=###PAGE_TSCONFIG_ID### and sys_language_uid = 0 ORDER BY tx_x4epersdb_person.lastname",
+				"foreign_table_where" => "AND tx_x4epersdb_person.pid=###PAGE_TSCONFIG_ID### ORDER BY tx_x4epersdb_person.lastname",
 				"size" => 10,
 				"minitems" => 0,
 				"maxitems" => 100,
@@ -198,13 +198,22 @@ $TCA["tx_x4epublication_publication"] = Array (
 			"config" => Array (
 				"type" => "select",
 				"foreign_table" => "tx_x4epersdb_person",
-				"foreign_table_where" => "AND tx_x4epersdb_person.pid=###PAGE_TSCONFIG_ID### and sys_language_uid = 0 ORDER BY tx_x4epersdb_person.lastname",
+				"foreign_table_where" => "AND tx_x4epersdb_person.pid=###PAGE_TSCONFIG_ID### ORDER BY tx_x4epersdb_person.lastname",
 				"size" => 10,
 				"minitems" => 0,
 				"maxitems" => 100,
 				"MM" => "tx_x4epublication_publication_persons_publ_mm",
 				"itemsProcFunc" => "tx_x4epublication_tx_x4epublication_tca_proc->main",
 			)
+			/*"config" => Array (
+				"type" => "group",
+				"internal_type" => "db",
+				"allowed" => "tx_x4epersdb_person",
+				"size" => 10,
+				"minitems" => 0,
+				"maxitems" => 100,
+				"MM" => "tx_x4epublication_publication_persons_publ_mm",
+			)*/
 		),
 		"publishers_ext" => Array (
 			"exclude" => 0,
@@ -304,7 +313,7 @@ $TCA["tx_x4epublication_publication"] = Array (
 				),
 			)
 		),
-		/*"department_id" => Array (
+		"department_id" => Array (
 			'l10n_mode' => 'exclude',
 			"exclude" => 1,
 			"label" => "LLL:EXT:x4epublication/locallang_db.php:tx_x4epublication_publication.department_id",
@@ -316,7 +325,7 @@ $TCA["tx_x4epublication_publication"] = Array (
 				"minitems" => 1,
 				"maxitems" => 1,
 			)
-		),*/
+		),
 		"anthology_title" => Array (
 			"exclude" => 1,
 			"label" => "LLL:EXT:x4epublication/locallang_db.php:tx_x4epublication_publication.anthology_title",
@@ -457,8 +466,7 @@ $TCA["tx_x4epublication_publication"] = Array (
 		),
 	),
 	"types" => Array (
-		//"0" => Array("showitem" => "hidden;;1;;1-1-1, category_sub, auth_publ, authors, authors_ext, publishers, publishers_ext, title;;;;2-2-2, location;;;;3-3-3, run, year, pub_language, volume, magazine_title, magazine_year, magazine_issue, anthology_title, anthology_publisher,abstract;;;richtext[paste|bold|italic|formatblock|class|orderedlist|unorderedlist|link]:rte_transform[flag=rte_enabled|mode=ts], pages, event_date, other_redaction, department_id, keywords, jel_classification, daymonth, url, file_ref, impact, publ_company")
-		"0" => Array("showitem" => "hidden;;1;;1-1-1, category_sub, auth_publ, authors, authors_ext, publishers, publishers_ext, title, description, location;;;;3-3-3, run, year, pub_language, volume, magazine_title, magazine_year, magazine_issue, anthology_title, anthology_publisher,abstract;;;richtext[paste|bold|italic|formatblock|class|orderedlist|unorderedlist|link]:rte_transform[flag=rte_enabled|mode=ts], pages, event_date, other_redaction, keywords, jel_classification, daymonth, url, file_ref, impact, publ_company")
+		"0" => Array("showitem" => "hidden;;1;;1-1-1, category_sub, auth_publ, authors, authors_ext, publishers, publishers_ext, title, description, location;;;;3-3-3, run, year, pub_language, volume, magazine_title, magazine_year, magazine_issue, anthology_title, anthology_publisher,abstract;;;richtext[paste|bold|italic|formatblock|class|orderedlist|unorderedlist|link]:rte_transform[flag=rte_enabled|mode=ts], pages, event_date, other_redaction, department_id, keywords, jel_classification, daymonth, url, file_ref, impact, publ_company")
 	),
 	"palettes" => Array (
 		"1" => Array("showitem" => "")

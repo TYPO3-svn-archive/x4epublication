@@ -1,169 +1,86 @@
-#########
-# Default plugin to display the publications
-#########
 plugin.tx_x4epublication_pi1 {
-	# template of publications containing the different output types
-	publicationTemplate =  typo3conf/ext/x4epublication/templates/publications.html
+  publicationTemplate =  typo3conf/ext/x4epublication/templates/publications.html
+  publicationTemplate =  fileadmin/{$token}/templates/ext/publications.html
+  singleViewTemplate = typo3conf/ext/x4epublication/templates/singleView.html
+  templateFile = typo3conf/ext/x4epublication/templates/list.html
+  pidList = {$publDB.pidList}
+  detailPageUid = 9858
+  authorDetailPageUid = {$persDB.detailPageUid}
+  editPageUid = {$publDB.editPageUid}
+  newPublicationPageUid = {$publDB.newPublicationPageUid}
+  editableCats = {$publDB.editableCats}
+  modeSelection = 1
+  #Start Year to start grabbing the publication from the db
+  startYear = 2002
+  excludeSubCategoryInLatestUid =
+   #includeSubCatInLatestIfAvailable =
+  #show only publications from the following persDB department/s (comma-separated)
+  showOnlyPublWithAuthorFromDepartment = 
+  listView {
+     results_at_a_time = 10
+     maxPages = 7
+    showResultCount = 1
+    showPBrowserText = 0
+    dontLinkActivePage = 1
+    tableParams = cellpadding="2" align="center"
 
-	# template for single view
-	singleViewTemplate = typo3conf/ext/x4epublication/templates/singleView.html
-  
-	# template file for list view
-	templateFile = typo3conf/ext/x4epublication/templates/list.html
+    showFirstLast = 1
+    pagefloat = center
+    showRange = 1
+    disabledLinkWrap = <span style="color:#bbb;">|</span>
+    inactiveLinkWrap = |
+    activeLinkWrap = <strong>|</strong>
+    LinksWrap =|
+    showResultsWrap = |<br />
+    showResultsNumbersWrap = |
+    browseBoxWrap =
+    browseLinksWrap = |
+    # separators for abstract, urls and file downloads separated by semicolon
+    dlSeparators = (;/;)
+    # manual listrecord ordering
+    manualOrderBy = 
+    # overwrite (1) or add to standard orderBy
+    orderOverwrite = 0
+  }
+  search {
+    pagebrowser {
+       wraps {
+          disabledLinkWrap = <span style="color:#bbb;">|</span>
+    inactiveLinkWrap = |
+    activeLinkWrap = <strong>|</strong>
+    LinksWrap =|
+    showResultsWrap = |<br />
+    showResultsNumbersWrap = |
+    browseBoxWrap =
+    browseLinksWrap = |
 
-	# uid of sysfolder containing the publications, may be overriden by flexform
-	pidList = {$publDB.pidList}
+       }
+    maxPages = 7
+    showResultCount = 1
+    showPBrowserText = 0
+    dontLinkActivePage = 1
+    tableParams = cellpadding="2" align="center"
 
-	# page uid for the detail view
-	detailPageUid = {$publDB.detailPageUid}
-	
-	# detail page uid for the authors
-	authorDetailPageUid = {$persDB.detailPageUid}
-
-	# uid of the page "edit publications"
-	editPageUid = {$publDB.editPageUid}
-
-	# uid of the page "create publications"
-	newPublicationPageUid = {$publDB.newPublicationPageUid}
-
-	# uids of categories that are available for frontend editing, comma separated
-	editableCats = {$publDB.editableCats}
-
-	# selection of the different views, overriden by flexform
-	# 1: listBySubCategory
-	# 2: listBySubCategory with edit buttons
-	# 3: singleView
-	# 4: listView
-	modeSelection = 1
-
-	#Start year to start grabbing the publication from the db
-	startYear = 2002
-
-	# dont display these categories in the latest view
-	excludeSubCategoryInLatestUid =
-
-	# include these in the latest view
-	#includeSubCatInLatestIfAvailable =
-
-	# wrap for the year box
-	yearBoxWrap =
-
-	# uids of languages to be available the select box
-	langList =
-
-	# disable persdb usage (not 100% sure where this makes sense)
-	noPersDB =
-
-	# limit publications to show only if author is within this department
-	showOnlyPublWithAuthorFromDepartment =
-
-	# limit publications to show only if author is within this reserach group (if x4eresearchgroup is installed)
-	showOnlyPublWithAuthorFromResearchgroup =
-
-	# disable multiple language feature
-	disableMultiLang =
-
-	#list view with standard tslib_pibase page browser (deprecated???)
-	listView {
-		results_at_a_time = 10
-		maxPages = 7
-		showResultCount = 1
-		showPBrowserText = 0
-		dontLinkActivePage = 1
-		tableParams = cellpadding="2" align="center"
-
-		showFirstLast = 1
-		pagefloat = center
-		showRange = 1
-		disabledLinkWrap = <span style="color:#bbb;">|</span>
-		inactiveLinkWrap = |
-		activeLinkWrap = <strong>|</strong>
-		LinksWrap =|
-		showResultsWrap = |<br />
-		showResultsNumbersWrap = |
-		browseBoxWrap =
-		browseLinksWrap = |
-	}
-
-	# search configuration
-	search {
-		pagebrowser {
-		wraps {
-		disabledLinkWrap = <span style="color:#bbb;">|</span>
-		inactiveLinkWrap = |
-		activeLinkWrap = <strong>|</strong>
-		LinksWrap =|
-		showResultsWrap = |<br />
-		showResultsNumbersWrap = |
-		browseBoxWrap =
-		browseLinksWrap = |
-
-		}
-		maxPages = 7
-		showResultCount = 1
-		showPBrowserText = 0
-		dontLinkActivePage = 1
-		tableParams = cellpadding="2" align="center"
-
-		showFirstLast = 1
-		pagefloat = center
-		showRange = 1
-		showFirstLast = 1
-	}
+    showFirstLast = 1
+    pagefloat = center
+    showRange = 1
+   showFirstLast = 1
+    }
   }
 }
 
-############
-# Frontend editing for the publications
-############
 plugin.tx_x4epublication_pi2 = USER_INT
 plugin.tx_x4epublication_pi2 {
-	# uid of sysfolder containing the publications
 	pidList = {$publDB.pidList}
-	# uid of page "manage publications"
 	returnPageUid = {$publDB.returnPageUid}
-	# sysfolder of the persons (authors / publishers)
 	authorsSysFolderUid = {$persDB.pidList}
-	# uids of categories that are available for frontend editing, comma separated
 	editableCats = {$publDB.editableCats}
-	# template for the different form elements
-	templateFile = typo3conf/ext/x4epublication/templates/add.html
-	# stylesheet to use for the forms
-	stylesheet = typo3conf/ext/x4epublication/templates/style.css
-	# template for the author search
-	searchAuthorTemplateFile =  typo3conf/ext/x4epublication/templates/authorSearch.html
-	# template for the publishers search
-	searchPublisherTemplateFile =  typo3conf/ext/x4epublication/templates/publisherSearch.html
-
-	# default language for publication (uid of record in language table)
-	defaultPubLang =
-
-	# uids of languages to generate the select box
-	langList =
+  templateFile = typo3conf/ext/x4epublication/templates/add.html
+  stylesheet = typo3conf/ext/x4epublication/templates/style.css
+  searchAuthorTemplateFile =  typo3conf/ext/x4epublication/templates/authorSearch.html
+  searchPublisherTemplateFile =  typo3conf/ext/x4epublication/templates/publisherSearch.html
 }
 
-
-
-#########
-# Publication selection for the latest view
-#########
-plugin.tx_x4epublication_publselect {
-	# HTML template for the selection form
-	templateFile = typo3conf/ext/x4epublication/templates/choosepublication.html
-	# stylesheet for the publication selection
-	stylesheet = typo3conf/ext/x4epublication/templates/style.css
-	# template for the search form
-	publicationSearchTemplateFile = typo3conf/ext/x4epublication/templates/publicationSearch.html
-	# uid of the page "search publications" below "choose publications"
-	publicationSearchPageUid = {$publDB.publselect.searchPageUid}
-	# sysfolder of the persons (authors / publishers)
-	authorsSysFolderUid = {$persDB.pidList}
-}
-
-
-########
-# author search form
-########
 
 [globalVar= GP:type=7645]
 # Configuring the Auto-Parser for main template:
@@ -214,23 +131,39 @@ page.includeCSS {
 }
 [global]
 
-########
+# *******************
 # PDF-VERSION
-########
+# *******************
+
 [globalVar= GP:type=4444]
+
 # Default PAGE object:
+
 page = PAGE
 page.typeNum = 4444
 page.config.pageGenScript = typo3conf/ext/x4epublication/pi1/generatePdf.php
 [end]
 
 
-########
+# *******************
 # Publication TXT-Export
-########
+# *******************
+
 [globalVar= GP:type=4446]
+
+# Default PAGE object:
+
 page = PAGE
 page.typeNum = 4446
 page.config.disableCharsetHeader = 1
 page.config.pageGenScript = typo3conf/ext/x4epublication/pi1/generateTxt.php
 [end]
+
+plugin.tx_x4epublication_publselect {
+	templateFile = typo3conf/ext/x4epublication/templates/choosepublication.html
+	stylesheet = typo3conf/ext/x4epublication/templates/style.css
+	#publicationSearchTemplateFile = fileadmin/templates/ext/publics/publicationSearch.html
+	publicationSearchTemplateFile = typo3conf/ext/x4epublication/templates/publicationSearch.html
+	publicationSearchPageUid = {$publDB.publselect.searchPageUid}
+	authorsSysFolderUid = {$persDB.pidList}
+}

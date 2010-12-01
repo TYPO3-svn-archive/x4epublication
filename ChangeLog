@@ -1,5 +1,17 @@
+(add new changes on top of this file)
+
+2010-12-01 Manuel Kammermann <manuel-at-4eyes.ch>
+	* pi1/generateTxt -> added check for empty filename before outputting rtf->addText($file)     (Task 8.44)
+
 2010-11-17 Markus Stauffiger (markus-at-4eyes.ch)
 	* Changed description field from type text to type input, added it to the field-list
+
+2010-11-02 Alessandro Bellafronte (alessandro-at-4eyes.ch)
+	* Interface to x4eresearch in method "listBySubCategory": Added a new TS-Flag to load the publications of team members as well
+
+2010-10-26 Manuel Kammermann <manuel-at-4eyes.ch>
+	* TS-Setup: _pi1.listView.manualOrderBy for manual list ordering
+	* TS-Setup: _pi1.listView.orderOverwrite for selecting manuelOrderBy mode (1=overwrite/else=add)
 
 2010-10-01 Markus Stauffiger <markus-at-4eyes.ch>
 	* Updated add.html to include return false in all onclick events
@@ -7,6 +19,17 @@
 2010-08-31 Markus Stauffiger <markus-at-4eyes.ch>
 	* Updated typoscript documentation
 	* Added manual
+
+2010-08-30 Manuel Kammermann <manuel-at-4eyes.ch>
+	* TS-Setup: _pi1.showOnlyPublWithAuthorFromDepartment to show publications only from a specific department (in categoryList mode)
+	* TS-Setup: _pi1.showOnlyPublWithAuthorFromResearchgroup to show publications only from a specific researchgroup (in categoryList mode)
+	* TS-Setup: _pi1.disableMultiLang if set to 1 publications are shown independantly of sys_language_uid
+
+2010-08-30 Manuel Kammermann <manuel-at-4eyes.ch>
+	* abstract View popup implemented into template
+	* introduced new TS-Setup: _pi1.listView.dlSeparator for Boxed View of file_ref,url,abstract
+	* added xml->db import field for abstract
+	* pi1::main() -> additionalHeaders for Popup
 
 2010-08-30 Markus Stauffiger <markus-at-4eyes.ch>
 	* Added typoscript documentation
@@ -22,7 +45,9 @@
 	* Documented
 
 2010-07-09 by alessandro-at-4eyes.ch
-	* Start Year for displaying publications is now configurable in typoscript by setting eg. "plugin.tx_x4epublication_pi1.startYear = 1998"
+	- Start Year for displaying publications is now configurable in typoscript by setting eg. "plugin.tx_x4epublication_pi1.startYear = 1998" 
 
-2005-09-10 Markus Stauffiger  <markus-at-4eyes.ch>
+
+05-09-10 Markus Stauffiger  <markus-at-4eyes.ch>
+
 	* Initial release

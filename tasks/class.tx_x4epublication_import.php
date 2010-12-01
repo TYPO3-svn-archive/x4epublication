@@ -44,8 +44,14 @@ class tx_x4epublication_import extends tx_scheduler_Task {
 		
 		$this->mapping = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->_EXTKEY]['pubMapping'][$this->pubpid];
 		$this->config = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->_EXTKEY]['configPubImport'];
-		if(empty($this->mapping) || empty($this->config)) {
-			$this->addMessage('Mapping or config empty', t3lib_FlashMessage::ERROR);
+		if(empty($this->mapping) && empty($this->config)) {
+			$this->addMessage('Mapping and config empty', t3lib_FlashMessage::ERROR);
+			return false;
+		} else if(empty($this->mapping)){
+			$this->addMessage('Mapping is empty', t3lib_FlashMessage::ERROR);
+			return false;
+		} else if(empty($this->config)){
+			$this->addMessage('Config is empty', t3lib_FlashMessage::ERROR);
 			return false;
 		} 
 		
@@ -61,6 +67,11 @@ class tx_x4epublication_import extends tx_scheduler_Task {
 			$this->addMessage('Authorization failed. Wrong User/PW or URL.', t3lib_FlashMessage::ERROR);
 			return false;
 		}
+<<<<<<< .mine
+		//$xmlstr = str_replace("iso-8859-1", "utf-8", $xmlstr);
+		//$xmlstr = iconv("windows-1252", "utf-8", $xmlstr);
+=======
+>>>>>>> .r40720
 		
 		$xmlArr = array();
 		$import = array();
@@ -72,9 +83,18 @@ class tx_x4epublication_import extends tx_scheduler_Task {
 			$url = $resumptionurl . $xmlArr[$count]->ListRecords->resumptionToken[0];
 			$xmlstr = $this->file_post_contents($url,false,$this->oaiuser,$this->oaipw);
 			if(strpos($xmlstr,"401 Authorization Required")!==false) {
+<<<<<<< .mine
+				$this->addMessage('Authorization failed. Wrong User/PW or URL.', t3lib_FlashMessage::ERROR);
+				return false;
+			}
+			//$xmlstr = str_replace("iso-8859-1", "utf-8", $xmlstr);
+			//$xmlstr = iconv("windows-1252", "utf-8", $xmlstr);
+			if ($this->showxml) print_r(($xmlstr));
+=======
 			$this->addMessage('Authorization failed. Wrong User/PW or URL.', t3lib_FlashMessage::ERROR);
 			return false;
 		}
+>>>>>>> .r40720
 			$count++;
 			$xmlArr[$count] = new SimpleXMLElement($xmlstr);
 		}
@@ -170,7 +190,7 @@ class tx_x4epublication_import extends tx_scheduler_Task {
 		t3lib_div::debug("Inserted: <b>" . $ret['inserted'] . " |</b> Updated: <b>" . $ret['updated'] . " |</b> Deleted: <b>" . $ret['deleted']. " |</b> Failed: <b>" . $ret['failed'] . "</b><br/>");
 	
 	
-		mail("michel@4eyes.ch", "PubDB Import", $this->pubpid . " - PubDB Import beendet am ".date("m.d.y - H:i:s"),"from:awbk");
+		//mail("michel@4eyes.ch", "PubDB Import", $this->pubpid . " - PubDB Import beendet am ".date("m.d.y - H:i:s"),"from:awbk");
 		if(intval($ret['failed']) > 0 ) {
 			return false;
 		} else {
@@ -224,6 +244,7 @@ class tx_x4epublication_import extends tx_scheduler_Task {
 			$mArr['rdborgid'] = $record['rdborgid'];
 			
 			// Additional specific data:
+			$mArr['abstract'] = ($record['description']) ?  $record['description']: '';
 			$mArr['location'] = ($record['place_of_publication']) ?  $record['place_of_publication']: '';
 			$mArr['anthology_title'] = ($record['booktitle']) ?  $record['booktitle']: '';
 			$mArr['magazine_title'] = ($record['newspaper_title']) ?  $record['newspaper_title']: '';
